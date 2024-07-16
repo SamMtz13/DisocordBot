@@ -10,15 +10,34 @@ const client = new Client({
     ],
 });
 
+let status=
+[
+    {
+        name: 'a los usuarios',
+        type: ActivityType.Watching,
+        
+
+    }
+    ,
+    {
+        name: 'a TimelyGymnast6',
+        type: ActivityType.Streaming,
+        url:'https://www.twitch.tv/timelygymnast6'
+    },
+    {
+        name: 'que chingue a su madre Gistropher'
+    }
+]
 client.on('ready', (c) => {
     console.log(`${c.user.tag} está conectado.`);
 
-    client.user.setActivity({
-        name: 'a los usuarios',
-        type: ActivityType.Watching,
-    });
-    }
-);
+    setInterval(() => {
+        let randomStatus = status[Math.floor(Math.random() * status.length)];
+        client.user.setActivity(randomStatus.name, { type: randomStatus.type, url: randomStatus.url });
+
+        
+    }, 10000);
+});
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
