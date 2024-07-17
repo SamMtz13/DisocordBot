@@ -1,5 +1,6 @@
 require('dotenv').config();
-const { Client, IntentsBitField, EmbedBuilder, ActivityType} = require('discord.js');
+const { Client, IntentsBitField, EmbedBuilder} = require('discord.js');
+const eventHandler = require('./handlers/eventHandler');
 
 const client = new Client({
     intents: [
@@ -10,34 +11,9 @@ const client = new Client({
     ],
 });
 
-let status=
-[
-    {
-        name: 'a los usuarios',
-        type: ActivityType.Watching,
-        
 
-    }
-    ,
-    {
-        name: 'a TimelyGymnast6',
-        type: ActivityType.Streaming,
-        url:'https://www.twitch.tv/timelygymnast6'
-    },
-    {
-        name: 'que chingue a su madre Gistropher'
-    }
-]
-client.on('ready', (c) => {
-    console.log(`${c.user.tag} está conectado.`);
 
-    setInterval(() => {
-        let randomStatus = status[Math.floor(Math.random() * status.length)];
-        client.user.setActivity(randomStatus.name, { type: randomStatus.type, url: randomStatus.url });
 
-        
-    }, 10000);
-});
 
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isChatInputCommand()) return;
@@ -46,11 +22,6 @@ client.on('interactionCreate', async (interaction) => {
         await interaction.reply('Hola, ¿cómo estás?');
     }
 
-    if (interaction.commandName === 'ping') {
-        const sent = await interaction.reply({ content: 'Calculando latencia...', fetchReply: true });
-        const latency = sent.createdTimestamp - interaction.createdTimestamp;
-        await interaction.editReply(`Pong! Latencia del bot: ${latency}ms. Latencia de la API: ${Math.round(client.ws.ping)}ms.`);
-    }
 
     if (interaction.commandName === 'agregar') {
         const num1 = interaction.options.getNumber('num1');
@@ -154,5 +125,7 @@ client.on('interactionCreate', async (interaction) => {
 
 }
 );
+
+eventHandler(client);
 
 client.login(process.env.TOKEN);
