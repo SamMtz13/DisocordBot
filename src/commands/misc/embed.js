@@ -6,7 +6,7 @@ module.exports = {
 
   callback: async (client, interaction) => {
     const embed = new EmbedBuilder()
-      .setTitle('Este es un título')
+      .setTitle(' ¡Hola! ')
       .setDescription('Este es un mensaje de prueba')
       .setColor('Random')
       .addFields(

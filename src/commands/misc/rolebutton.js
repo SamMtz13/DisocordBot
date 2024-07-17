@@ -2,12 +2,16 @@ const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
 const roles = [
     {
-        id: '1022994581496799252',
-        label: 'ENTRE MAS ME LA MAMAS MAS ME CRECE'
+        id: '1017924164524445766',
+        label: 'Foraneo'
     },
     {
         id: '1017918754128154624',
         label: 'Admin'
+    },
+    {
+        id: '1210460254249291838',
+        label: 'El Clero'
     }
 ];
 

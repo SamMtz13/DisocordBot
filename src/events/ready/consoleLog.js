@@ -6,21 +6,18 @@ let status = [
         type: ActivityType.Watching,
     },
     {
-        name: 'a Don Pendejo',
+        name: 'a TimelyGymnast6 en Twitch',
         type: ActivityType.Streaming,
         url: 'https://www.twitch.tv/timelygymnast6'
     },
-    {
-        name: 'que chingue a su madre Gistropher',
-        type: ActivityType.Playing, // Añadido un tipo por defecto
-    }
+    
 ];
 
 module.exports = (client) => {
     console.log(`Logged in as ${client.user.tag}`);
     setInterval(() => {
         let randomStatus = status[Math.floor(Math.random() * status.length)];
-        let activityOptions = { type: randomStatus.type || ActivityType.Playing }; // Añade un tipo por defecto
+        let activityOptions = { type: randomStatus.type || ActivityType.Playing }; 
         if (randomStatus.url) {
             activityOptions.url = randomStatus.url;
         }
